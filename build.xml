@@ -1,0 +1,40 @@
+﻿<?xml version="1.0"?>
+
+<project name="EC_Customer" default="${client.jar}" basedir=".">
+
+	<!-- dir/file define -->
+	<property name="build.dir" value="WebContent/WEB-INF/classes/"/>
+	<property name="dist.dir" value="dist"/>
+	<property name="client.jar" value="lpmas-admin-client-0.1.0.jar"/>
+
+	<target name="prepare">
+		<mkdir dir="${dist.dir}"/>
+		<delete>
+			<fileset dir="${dist.dir}">
+				<include name="${dist.jar}"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="${client.jar}" depends="prepare">
+		<jar jarfile="${dist.dir}/${client.jar}">
+			<fileset dir="${build.dir}" >
+				<include name="com/lpmas/admin/business/AdminUserHelper.class"/>
+				<include name="com/lpmas/admin/business/AdminLogonUtil.class"/>
+				<include name="com/lpmas/admin/business/AdminUtil.class"/>
+				<include name="com/lpmas/admin/bean/**"/>
+				<include name="com/lpmas/admin/client/**"/>
+				<include name="com/lpmas/admin/client/cache/**"/>
+				<include name="com/lpmas/admin/config/AdminClientConfig.class"/>
+				<include name="com/lpmas/admin/config/AdminClientCacheConfig.class"/>
+				<include name="com/lpmas/admin/config/OperationConfig.class"/>
+				<include name="com/lpmas/admin/config/AdminConfig.class"/>
+				<include name="com/lpmas/admin/component/**"/>
+				<exclude name="com/lpmas/admin/component/impl/**"/>
+				<include name="com/lpmas/admin/filter/**"/>
+				<include name="config/admin_key.properties"/>
+			</fileset>
+		</jar>
+	</target>
+	
+</project>
